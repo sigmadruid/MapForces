@@ -33,6 +33,15 @@ MonoBehaviour:
     SizeX: 1
     SizeY: 1
   BlockDefinitions:
-  - Prefab: Assets/Game/ResourceData/Prefab/Ground/Ground_01.prefab
-  - Prefab: Assets/Game/ResourceData/Prefab/Ground/Ground_02.prefab
-  - Prefab: Assets/Game/ResourceData/Prefab/Ground/Ground_03.prefab
+  - ID: 1
+    Prefab: Assets/Game/ResourceData/Prefab/Ground/Ground_01.prefab
+    MinHeight: 1
+    MaxHeight: 2
+  - ID: 2
+    Prefab: Assets/Game/ResourceData/Prefab/Ground/Ground_02.prefab
+    MinHeight: 2
+    MaxHeight: 4
+  - ID: 3
+    Prefab: Assets/Game/ResourceData/Prefab/Ground/Ground_03.prefab
+    MinHeight: 0
+    MaxHeight: 1
