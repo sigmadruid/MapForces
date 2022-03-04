@@ -16,5 +16,6 @@ namespace Game.Scripts.Map
         public int BlockSizeY;
 
         public MapTileDefinition[] DefinitionList;
+        public MapBlockDefinition[] BlockDefinitions;
     }
 }

@@ -13,10 +13,10 @@ namespace Game.Scripts.Map
             {
                 for (int j = 0; j < blockNumY; ++j)
                 {
-                    int index = Random.Range(0, 3) + 1;
-                    string groundName = $"Assets/Game/ResourceData/Prefab/Ground/Ground_0{index}.prefab";
+                    int index = Random.Range(0, mapConfig.BlockDefinitions.Length);
+                    MapBlockDefinition definition = mapConfig.BlockDefinitions[index];
                     Vector3 groundPosition = new Vector3(mapConfig.BlockSizeX * (i + 0.5f), 0, mapConfig.BlockSizeY * (j + 0.5f));
-                    BaseContext.Spawn.SpawnAsync(groundName, (go) =>
+                    BaseContext.Spawn.SpawnAsync(definition.Prefab, (go) =>
                     {
                         go.transform.SetParent(MapFacade.Instance.GroundRoot);
                         go.transform.localPosition = groundPosition;
