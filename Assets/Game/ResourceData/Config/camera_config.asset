@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: camera_config
   m_EditorClassIdentifier: 
   PlaneNormal: {x: 0, y: 1, z: 0}
-  InitPosition: {x: 850, y: 10, z: 850}
+  InitPosition: {x: 850, y: 20, z: 850}
   XAngle: 45
   TranslateSpeed: 20
   ScrollSpeed: 10

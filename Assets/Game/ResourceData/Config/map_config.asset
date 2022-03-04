@@ -21,14 +21,14 @@ MonoBehaviour:
   BlockSizeY: 25
   DefinitionList:
   - ID: 1
-    Prefab: Assets/Game/Prefab/Tile/Tree_01.prefab
+    Prefab: Assets/Game/ResourceData/Prefab/Tile/Tree_01.prefab
     SizeX: 1
     SizeY: 1
   - ID: 2
-    Prefab: Assets/Game/Prefab/Tile/Tree_02.prefab
+    Prefab: Assets/Game/ResourceData/Prefab/Tile/Tree_02.prefab
     SizeX: 1
     SizeY: 1
   - ID: 3
-    Prefab: Assets/Game/Prefab/Tile/Stump_01.prefab
+    Prefab: Assets/Game/ResourceData/Prefab/Tile/Stump_01.prefab
     SizeX: 1
     SizeY: 1

@@ -19,8 +19,8 @@ namespace Game.Scripts
             
             BaseContext.Initialize();
 
-            MapConfig mapConfig = BaseContext.Resource.Load<MapConfig>("Assets/Game/Config/map_config.asset");
-            MapCameraConfig cameraConfig = BaseContext.Resource.Load<MapCameraConfig>("Assets/Game/Config/camera_config.asset");
+            MapConfig mapConfig = BaseContext.Resource.Load<MapConfig>("Assets/Game/ResourceData/Config/map_config.asset");
+            MapCameraConfig cameraConfig = BaseContext.Resource.Load<MapCameraConfig>("Assets/Game/ResourceData/Config/camera_config.asset");
             MapManager = new MapManager();
             MapManager.Initialize(mapConfig, cameraConfig);
         }

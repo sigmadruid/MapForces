@@ -15,7 +15,7 @@
             Resource = new ResourceManager();
             Resource.Initialize();
             
-            InputConfig inputConfig = Resource.Load<InputConfig>("Assets/Game/Config/input_config.asset");
+            InputConfig inputConfig = Resource.Load<InputConfig>("Assets/Game/ResourceData/Config/input_config.asset");
             Input = new InputManager();
             Input.Initialize(inputConfig);
         }
