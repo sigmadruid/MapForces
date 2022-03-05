@@ -10,20 +10,25 @@ namespace Game.Scripts.Map.Generation.HeightTexture
     {
         private float[,] _heightMap;
         private int[,] _markMap;
+
+        private int blockNumX;
+        private int blockNumY;
         protected override void OnStart()
         {
-            _heightMap = new float[_mapConfig.SizeX, _mapConfig.SizeY];
-            for (int i = 0; i < _mapConfig.SizeX; ++i)
+            blockNumX = _mapConfig.SizeX / _mapConfig.BlockSizeX;
+            blockNumY = _mapConfig.SizeY / _mapConfig.BlockSizeY;
+            _heightMap = new float[blockNumX, blockNumY];
+            for (int i = 0; i < blockNumX; ++i)
             {
-                for (int j = 0; j < _mapConfig.SizeY; ++j)
+                for (int j = 0; j < blockNumY; ++j)
                 {
-                    _heightMap[i, j] = 0f;
+                    _heightMap[i, j] = 1f;
                 }
             }
-            _markMap = new int[_mapConfig.SizeX, _mapConfig.SizeY];
-            for (int i = 0; i < _mapConfig.SizeX; ++i)
+            _markMap = new int[blockNumX, blockNumY];
+            for (int i = 0; i < blockNumX; ++i)
             {
-                for (int j = 0; j < _mapConfig.SizeY; ++j)
+                for (int j = 0; j < blockNumY; ++j)
                 {
                     _markMap[i, j] = 0;
                 }
@@ -40,11 +45,11 @@ namespace Game.Scripts.Map.Generation.HeightTexture
             GroundGenerationConfig groundConfig = _generationConfig.GroundConfig;
             for (int i = 0; i < groundConfig.MaxHighLandNum; ++i)
             {
-                int x = Random.Range(0, _mapConfig.SizeX);
-                int y = Random.Range(0, _mapConfig.SizeY);
+                int x = Random.Range(0, blockNumX);
+                int y = Random.Range(0, blockNumY);
                 int range = Random.Range(1, groundConfig.MaxHighLandRange);
                 float height = Random.Range(groundConfig.MinHeight, groundConfig.MaxHeight);
-                ProcessHighLand(i, x, y, range, height);
+                ProcessHighLand(i + 1, x, y, range, height);
             }
             
         }
@@ -61,11 +66,11 @@ namespace Game.Scripts.Map.Generation.HeightTexture
 
             for (int i = x - 1; i <= x + 1; ++i)
             {
-                if (0 <= i && i < _mapConfig.SizeX)
+                if (0 <= i && i < blockNumX)
                 {
                     for (int j = y - 1; j <= y + 1; ++j)
                     {
-                        if (0 <= j && j < _mapConfig.SizeY)
+                        if (0 <= j && j < blockNumY)
                         {
                             if (Random.value <= _generationConfig.GroundConfig.SpreadRatio)
                                 ProcessHighLand(index, i, j, range - 1, height);

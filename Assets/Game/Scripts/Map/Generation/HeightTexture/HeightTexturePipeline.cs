@@ -10,7 +10,7 @@
                 {
                     new HeightTextureStep(), 
                     new BlockGenerationStep(), 
-                    new TileGenerateStep(), 
+                    // new TileGenerateStep(), 
                 };
             }
         }

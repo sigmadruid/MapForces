@@ -2,6 +2,7 @@
 using UnityEngine;
 using Game.Scripts.FrameWork;
 using Game.Scripts.Map;
+using Game.Scripts.Map.Generation;
 
 namespace Game.Scripts
 {
@@ -21,8 +22,9 @@ namespace Game.Scripts
 
             MapConfig mapConfig = BaseContext.Resource.Load<MapConfig>("Assets/Game/ResourceData/Config/map_config.asset");
             MapCameraConfig cameraConfig = BaseContext.Resource.Load<MapCameraConfig>("Assets/Game/ResourceData/Config/camera_config.asset");
+            MapGenerationConfig generationConfig = BaseContext.Resource.Load<MapGenerationConfig>("Assets/Game/ResourceData/Config/generation_config.asset");
             MapManager = new MapManager();
-            MapManager.Initialize(mapConfig, cameraConfig);
+            MapManager.Initialize(mapConfig, cameraConfig, generationConfig);
         }
 
         private void Start()

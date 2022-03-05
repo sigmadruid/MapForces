@@ -29,9 +29,9 @@ namespace Game.Scripts.Map.Generation.HeightTexture
             {
                 for (int j = 0; j < blockYNum; ++j)
                 {
-                    float u = i * 1f * _mapConfig.BlockSizeX / _mapConfig.SizeX;
-                    float v = j * 1f * _mapConfig.BlockSizeY / _mapConfig.SizeY;
-                    float height = _context.HeightTexture.Sample(u, v);
+                    // float u = i * 1f * _mapConfig.BlockSizeX / _mapConfig.SizeX;
+                    // float v = j * 1f * _mapConfig.BlockSizeY / _mapConfig.SizeY;
+                    float height = _context.HeightTexture.Sample(i, j);
                     int id = GetBlockIDByHeight(height);
                     short rot = (short)Random.Range(0, 4);
                     _blockMap[i, j] = new BlockGeneration()

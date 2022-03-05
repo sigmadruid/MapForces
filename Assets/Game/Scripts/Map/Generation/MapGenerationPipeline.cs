@@ -1,14 +1,14 @@
-﻿using Game.Scripts.Map.Generation.HeightTexture;
+﻿using System;
+using Game.Scripts.Map.Generation.HeightTexture;
 
 namespace Game.Scripts.Map.Generation
 {
     public abstract class MapGenerationPipeline
     {
-        protected abstract MapGenerationStep[] StepList { get; }
 
         private MapConfig _mapConfig;
         private MapGenerationConfig _generationConfig;
-        private MapGenerationContext _context;
+        private MapGenerationContext _context = new MapGenerationContext();
 
         private int _index;
         private MapGenerationStep _currentStep;
@@ -19,13 +19,17 @@ namespace Game.Scripts.Map.Generation
             private set;
         }
 
-        public void Initialize(MapConfig mapConfig, MapGenerationConfig generationConfig, MapGenerationContext context)
+        public void Initialize(MapConfig mapConfig, MapGenerationConfig generationConfig)
         {
             _mapConfig = mapConfig;
             _generationConfig = generationConfig;
-            _context = context;
             
             OnInitialize();
+        }
+
+        public void Dispose()
+        {
+            
         }
         
         public void Start()
@@ -59,6 +63,20 @@ namespace Game.Scripts.Map.Generation
             
             OnProcess();
         }
+
+        public MapGenerationResult GetResult()
+        {
+            if (!IsFinished)
+            {
+                throw new Exception("Map Generation Pipeline is not finished yet!");
+            }
+            
+            MapGenerationResult result = new MapGenerationResult();
+            result.BlockGenerations = _context.BlockMap;
+            return result;
+        }
+        
+        protected abstract MapGenerationStep[] StepList { get; }
 
         protected abstract void OnInitialize();
         protected abstract void OnStart();

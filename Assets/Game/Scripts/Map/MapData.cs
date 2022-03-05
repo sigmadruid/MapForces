@@ -1,4 +1,5 @@
 ﻿using Game.Scripts.FrameWork;
+using Game.Scripts.Map.Generation;
 using UnityEngine;
 
 namespace Game.Scripts.Map
@@ -9,7 +10,7 @@ namespace Game.Scripts.Map
 
         private MapBlockData[,] _blockDataMatrix;
 
-        public void Initialize(MapConfig config)
+        public void Initialize(MapConfig config, MapGenerationResult generationResult)
         {
             Config = config;
             _blockDataMatrix = new MapBlockData[config.SizeX, config.SizeY];
@@ -20,8 +21,9 @@ namespace Game.Scripts.Map
             {
                 for (int j = 0; j < blockNumY; ++j)
                 {
+                    BlockGeneration generation = generationResult.BlockGenerations[i, j];
                     MapBlockData blockData = new MapBlockData();
-                    blockData.Initialize(index++);
+                    blockData.Initialize(index++, generation);
                     _blockDataMatrix[i, j] = blockData;
                 }
             }
@@ -41,6 +43,13 @@ namespace Game.Scripts.Map
             }
             _blockDataMatrix = null;
         }
+
+        public MapBlockData GetBlockDataAt(int x, int y)
+        {
+            if (0 <= x && x < _blockDataMatrix.GetLength(0) && 0 <= y && y < _blockDataMatrix.GetLength(1))
+                return _blockDataMatrix[x, y];
+            return null;
+        }
         
         public void AddTileData(MapTileData tileData)
         {
@@ -56,7 +65,7 @@ namespace Game.Scripts.Map
             Vector2Int max = viewPort.max;
             Vector2Int blockMin = MapMath.CalculateBlockPosition(min);
             Vector2Int blockMax = MapMath.CalculateBlockPosition(max);
-            Debug.LogFormat("min:{0},max:{1}", min, max);
+            // Debug.LogFormat("min:{0},max:{1}", min, max);
             for (int i = blockMin.x; i <= blockMax.x; ++i)
             {
                 for (int j = blockMin.y; j <= blockMax.y; ++j)

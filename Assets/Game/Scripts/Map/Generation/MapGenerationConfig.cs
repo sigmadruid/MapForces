@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Game.Scripts.Map.Generation
 {
+    [CreateAssetMenu(fileName ="generation_config", menuName ="Generation Config")]
     public class MapGenerationConfig : ScriptableObject
     {
         public GroundGenerationConfig GroundConfig;

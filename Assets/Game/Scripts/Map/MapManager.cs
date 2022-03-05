@@ -1,32 +1,45 @@
-﻿using UnityEngine;
+﻿using Game.Scripts.Map.Generation;
+using Game.Scripts.Map.Generation.HeightTexture;
+using UnityEngine;
 
 namespace Game.Scripts.Map
 {
     public class MapManager
     {
         private MapData _data = new MapData();
-        private MapGenerator _generator = new MapGenerator();
         private MapView _view = new MapView();
         private MapCamera _camera = new MapCamera();
+        
+        private MapGenerationPipeline _generationPipeline = new HeightTexturePipeline();
 
-        public void Initialize(MapConfig mapConfig, MapCameraConfig cameraConfig)
+        public void Initialize(MapConfig mapConfig, MapCameraConfig cameraConfig, MapGenerationConfig generationConfig)
         {
             MapMath.Initialize(mapConfig);
 
-            _data.Initialize(mapConfig);
-            _generator.Initialize();
+            _generationPipeline.Initialize(mapConfig, generationConfig);
+            
+            //process generation immediately
+            _generationPipeline.Start();
+            while (!_generationPipeline.IsFinished)
+            {
+                _generationPipeline.Process();
+            }
+            MapGenerationResult generationResult = _generationPipeline.GetResult();
+            
+            _data.Initialize(mapConfig, generationResult);
             _view.Initialize(_data);
             _camera.Initialize(cameraConfig, mapConfig, MapFacade.Instance.MainCamera);
 
             _camera.OnDrag += OnCameraDragHandler;
             
-            _generator.Generate(_data);
+
         }
 
         public void Dispose()
         {
             _camera.OnDrag -= OnCameraDragHandler;
 
+            _generationPipeline.Dispose();
             _camera.Dispose();
             _view.Dispose();
             _data.Dispose();

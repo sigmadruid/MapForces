@@ -16,7 +16,12 @@ namespace Game.Scripts.Map.Generation.HeightTexture
             u = Mathf.Clamp01(u);
             v = Mathf.Clamp01(v);
             int i = Mathf.RoundToInt(u * _heightMap.GetLength(0));
-            int j = Mathf.RoundToInt(u * _heightMap.GetLength(1));
+            int j = Mathf.RoundToInt(v * _heightMap.GetLength(1));
+            return _heightMap[i, j];
+        }
+        
+        public float Sample(int i, int j)
+        {
             return _heightMap[i, j];
         }
     }

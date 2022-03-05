@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Game.Scripts.FrameWork;
+using Game.Scripts.Map.Generation;
 using UnityEngine;
 
 namespace Game.Scripts.Map
@@ -9,13 +10,32 @@ namespace Game.Scripts.Map
     {
         public int Index { get; private set; }
 
+        public int ID
+        {
+            get { return _generation.ID; }
+        }
+
+        public float Rotation
+        {
+            get { return _generation.Rotation * 90f; }
+        }
+
+        public float Height
+        {
+            get { return _generation.Height; }
+        }
+
         private RectInt _blockRect;
         
         private List<MapTileData> _tileDatas = new List<MapTileData>();
 
-        public void Initialize(int index)
+        private BlockGeneration _generation;
+
+        public void Initialize(int index, BlockGeneration generation)
         {
             Index = index;
+            
+            _generation = generation;
             _blockRect = MapMath.GetBlockRect(Index);
         }
 

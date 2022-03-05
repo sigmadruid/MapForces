@@ -23,7 +23,7 @@ namespace Game.Scripts.Map
             _mapData = mapData;
             
             _ground = new MapGround();
-            _ground.Initialize(mapData.Config);
+            _ground.Initialize(mapData.Config, _mapData);
         }
 
         public void Dispose()

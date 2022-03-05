@@ -1,7 +1,7 @@
 ﻿using System;
 using Random = UnityEngine.Random;
 
-namespace Game.Scripts.Map
+namespace Game.Scripts.Map.Generation.Legacy
 {
     public class MapGenerator
     {

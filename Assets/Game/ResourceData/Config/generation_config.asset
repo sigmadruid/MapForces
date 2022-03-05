@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 444a7766e9ad4c5695cf100598070226, type: 3}
-  m_Name: camera_config
+  m_Script: {fileID: 11500000, guid: 8c6957367eba47debd8ffdbd7ff0dc54, type: 3}
+  m_Name: generation_config
   m_EditorClassIdentifier: 
-  PlaneNormal: {x: 0, y: 1, z: 0}
-  InitPosition: {x: 850, y: 30, z: 850}
-  XAngle: 45
-  TranslateSpeed: 20
-  ScrollSpeed: 10
+  GroundConfig:
+    MaxHighLandNum: 100
+    MaxHighLandRange: 5
+    SpreadRatio: 0.5
+    MaxHeight: 5
+    MinHeight: 0
